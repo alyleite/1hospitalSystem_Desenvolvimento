@@ -61,10 +61,14 @@ public class CidadeService {
 	public List<Cidade> findByEstado(Integer estadoId){
 		return CidadeRepository.findCidades(estadoId);
 	}
-	
+
 	public Cidade fromDTO(CidadeDTO objDto) {
 		//Estado estado = new Estado(objDto.getEstadoId(),null,null);
 		//return new Cidade(objDto.getId(), objDto.getNome(), estado);
-		return new Cidade(objDto.getId(),objDto.getNome(), new Estado(objDto.getEstadoId(),null,null));
+		Cidade cidade = new Cidade(objDto.getId(), objDto.getNome(), null);
+		if(objDto.getEstado() != null){
+			cidade.setEstado(new Estado(objDto.getEstado().getId(), objDto.getEstado().getNome(), null));
+		}
+		return cidade;
 	}
 }

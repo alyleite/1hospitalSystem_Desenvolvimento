@@ -1,24 +1,26 @@
 package com.hospital.mmgservices.dto;
 
-import java.io.Serializable;
-
 import com.hospital.mmgservices.domain.Cidade;
+
+import java.io.Serializable;
 
 public class CidadeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String nome;
-	private Integer estadoId;
-	
+	private EstadoDTO estado;
+
 	public CidadeDTO() {
-		
+
 	}
 
 	public CidadeDTO(Cidade obj) {
-		this.id = obj.getId();
-		this.nome = obj.getNome();
-		this.estadoId = obj.getEstado().getId();
+		if(obj != null) {
+			this.id = obj.getId();
+			this.nome = obj.getNome();
+			this.estado = new EstadoDTO(obj.getEstado());
+		}
 	}
 
 
@@ -38,19 +40,18 @@ public class CidadeDTO implements Serializable {
 		this.nome = nome;
 	}
 
-	public Integer getEstadoId() {
-		return estadoId;
+	public EstadoDTO getEstado() {
+		return estado;
 	}
 
-
-	public void setEstadoId(Integer estadoId) {
-		this.estadoId = estadoId;
+	public void setEstado(EstadoDTO estado) {
+		this.estado = estado;
 	}
 
 	@Override
 	public String toString() {
-		return "CidadeDTO [id=" + id + ", nome=" + nome + ", estadoId=" + estadoId + "]";
+		return "CidadeDTO [id=" + id + ", nome=" + nome + ", estado=" + estado + "]";
 	}
 
-	
+
 }

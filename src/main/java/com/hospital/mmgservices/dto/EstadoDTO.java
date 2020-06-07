@@ -6,17 +6,19 @@ import com.hospital.mmgservices.domain.Estado;
 
 public class EstadoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
-	private String nome; 
-	
+	private String nome;
+
 	public EstadoDTO() {
-		
+
 	}
-	
+
 	public EstadoDTO(Estado obj) {
-		id = obj.getId();
-		nome = obj.getNome();
+		if(obj != null) {
+			id = obj.getId();
+			nome = obj.getNome();
+		}
 	}
 
 	public Integer getId() {
